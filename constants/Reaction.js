@@ -1,0 +1,30 @@
+const Reaction={0:[
+	require("../assets/deer.png"),
+	require("../assets/deer.png"),
+	require("../assets/cat.png"),
+	require("../assets/dog.png"),
+	require("../assets/deer.png"),
+	require("../assets/cat.png"),
+	require("../assets/dog.png"),
+	require("../assets/cat.png"),
+	require("../assets/deer.png"),
+	require("../assets/dog.png"),
+	require("../assets/deer.png"),
+	10
+],
+1:[
+	require("../assets/deer.png"),
+	require("../assets/cat.png"),
+	require("../assets/dog.png"),
+	require("../assets/deer.png"),
+	require("../assets/cat.png"),
+	require("../assets/dog.png"),
+	require("../assets/cat.png"),
+	require("../assets/deer.png"),
+	require("../assets/dog.png"),
+	require("../assets/deer.png"),
+	require("../assets/dog.png"),
+	10
+]
+};
+export default Reaction;

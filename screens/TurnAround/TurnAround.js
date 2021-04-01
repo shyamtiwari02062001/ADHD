@@ -1,7 +1,15 @@
 import React,{useState} from "react";
-import { StyleSheet, View, TouchableOpacity,Image } from "react-native";
+import {
+	StyleSheet,
+	View,
+	TouchableOpacity,
+	Image,
+	ImageBackground
+} from "react-native";
 import Tiles from "../../constants/tiles";
-const  TurnAround=()=>{
+import Close from "../../components/close";
+import PropTypes from "prop-types";
+const  TurnAround=(props)=>{
 	// eslint-disable-next-line prefer-const
 	let [count,setCount]=useState(0);
 	const [id1,setId1]=useState(null);
@@ -20,6 +28,10 @@ const  TurnAround=()=>{
 	const [imageId6,setImageId6]=useState(0);
 	const [imageId7,setImageId7]=useState(null);
 	const [imageId8,setImageId8]=useState(0);
+	const [success,setSuccess]=useState(false);
+	// eslint-disable-next-line prefer-const
+	let [gameId,setGameId]=useState(0);
+	const arrayLength=Tiles[gameId].length;
 	const check=(tile,index)=>{
 		setCount(++count);
 		if(imageId1!=imageId2){
@@ -56,6 +68,25 @@ const  TurnAround=()=>{
 				if(tile==imageId3){
 					console.log("matched");
 					setCount(0);
+					if(arrayLength===4){
+						setTimeout(()=>{
+							setSuccess(true);
+						},500);
+						setTimeout(()=>{
+							setImageId1(null);
+							setImageId2(0);
+							setId1(null);
+							setId2(null);
+							setImageId3(null);
+							setImageId4(0);
+							setId3(null);
+							setId4(null);
+							setGameId(++gameId);
+						},2000);
+						setTimeout(()=>{
+							setSuccess(false);
+						},3000);
+					}
 				}
 				else{
 					setTimeout(()=>{
@@ -105,6 +136,33 @@ const  TurnAround=()=>{
 				if(tile==imageId7){
 					console.log("matched");
 					setCount(0);
+					if(arrayLength===8){
+						setTimeout(()=>{
+							setSuccess(true);
+						},500);
+						setTimeout(()=>{
+							setImageId1(null);
+							setImageId2(0);
+							setId1(null);
+							setId2(null);
+							setImageId3(null);
+							setImageId4(0);
+							setId3(null);
+							setId4(null);
+							setImageId5(null);
+							setImageId6(0);
+							setId5(null);
+							setId6(null);
+							setImageId7(null);
+							setImageId8(0);
+							setId7(null);
+							setId8(null);
+							setGameId(++gameId);
+						},2000);
+						setTimeout(()=>{
+							setSuccess(false);
+						},3000);
+					}
 				}
 				else{
 					setTimeout(()=>{
@@ -120,19 +178,17 @@ const  TurnAround=()=>{
 	};
 	return (
 		<View style={styles.container}>
-			<View style={{
-				flexDirection:"row",
-				justifyContent:"space-around",
-				width:"80%"
-			}}>
-				{Tiles[0].map((tile,index)=>
-					<View key={index} style={{
-						justifyContent:"space-between",
-						alignItems:"center",
-						flexDirection:"column"
-					}}>
-						<View style={{marginLeft:"40%"}}>
-							{	(index%2==0)&&<View>
+			{(success===false)&&<ImageBackground
+				source={
+					require("../../assets/backgroundImages/turnaroundBG.png")
+				}
+				style={styles.backgroundImage}
+			>
+				<Close fun={()=>{props.navigation.navigate("Dashboard");}}/>
+				<View style={[styles.view,{marginLeft:"5%"}]}>
+					{Tiles[gameId].map((tile,index)=>
+						<View style={styles.map} key={index}>
+							{	(index<=3)&&<View>
 								{(id1==index||
                                 id2==index||
                                 id3==index||
@@ -141,57 +197,84 @@ const  TurnAround=()=>{
                                 id6==index||
                                 id7==index||
                                 id8==index)?
-									<Image
-										source={tile}
-										style={{height:150,width:120}}
-									/>
+									<ImageBackground
+										source={
+											require("../../assets/back.png")
+										}
+										style={styles.upperLevelImage}
+									>
+										<Image
+											source={tile}
+											style={{
+												height:100,
+												width:90,
+											}}
+										/>
+									</ImageBackground>
 									:<TouchableOpacity key={index}
 										onPress={()=>{
 											check(tile,index);
 										}}>
 										<View
-											style={{
-												height:150,
-												width:120,
-												backgroundColor:"red"
-											}}
+											style={styles.upperLevelView}
 										/>
 									</TouchableOpacity>}
 							</View>
 							}
 						</View>
-						<View>
-							{	(index%2!=0)&&<View>
+					)}
+				</View>
+				<View style={[styles.view,{marginRight:"27%",marginTop:"5%"}]}>
+					{Tiles[gameId].map((tile,index)=>
+						<View style={styles.map} key={index}>
+							{	(index>=4&&index<=7)&&<View>
 								{(id1==index||
-                                id2==index||
-                                id3==index||
-                                id4==index||
-                                id5==index||
-                                id6==index||
-                                id7==index||
-                                id8==index)?
-									<Image
-										source={tile}
-										style={{height:150,width:120}}
-									/>
+						id2==index||
+						id3==index||
+						id4==index||
+						id5==index||
+						id6==index||
+						id7==index||
+						id8==index)?
+									<View style={{borderRadius:20}}>
+										<ImageBackground
+											source={
+												require(
+													"../../assets/back.png"
+												)
+											}
+											style={styles.lowerLevelImage}
+										>
+											<Image
+												source={tile}
+												style={{
+													height:100,
+													width:90,
+												}}
+											/>
+										</ImageBackground>
+									</View>
 									:<TouchableOpacity key={index}
 										onPress={()=>{
 											check(tile,index);
 										}}>
 										<View
-											style={{
-												height:150,
-												width:120,
-												backgroundColor:"red"
-											}}
+											style={styles.lowerLevelView}
 										/>
 									</TouchableOpacity>}
 							</View>
 							}
 						</View>
-					</View>
-				)}
-			</View>
+					)}
+				</View>
+			</ImageBackground>}
+			{(success===true)&&<View style={{flex:1}}>
+				<Image
+					source={
+						require("../../assets/turnAroundImages/success.gif")
+					}
+					style={styles.gif}/>
+			</View>}
 		</View>
 	);
 };
@@ -202,5 +285,54 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		flexDirection:"row",
 	},
+	lowerLevelView:{
+		marginBottom:40,
+		height:120,
+		width:100,
+		borderRadius:20,
+		backgroundColor:"#cbfe00"
+	},
+	lowerLevelImage:{
+		marginBottom:40,
+		height:120,
+		borderRadius:20,
+		width:100,
+		justifyContent:"center",
+		alignItems:"center"
+	},
+	upperLevelView:{
+		marginTop:40,
+		height:120,
+		width:100,
+		borderRadius:20,
+		backgroundColor:"#cbfe00"
+	},
+	upperLevelImage:{
+		marginTop:40,
+		height:120,
+		width:100,
+		justifyContent:"center",
+		alignItems:"center"
+	},
+	map:{
+		marginLeft:"5%",
+	},
+	view:{
+		flexDirection:"row",
+		width:"80%",
+	},
+	backgroundImage:{
+		flex:1,
+		justifyContent:"center",
+		alignItems:"center"
+	},
+	gif:{
+		height:"100%",
+		width:"100%"
+	}
 });
+TurnAround.propTypes={
+	fun:PropTypes.any,
+	navigation:PropTypes.any
+};
 export default TurnAround;

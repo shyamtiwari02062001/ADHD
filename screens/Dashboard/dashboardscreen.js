@@ -19,11 +19,25 @@ const DashboardScreen = (props) => {
 		if(index==1){
 			props.navigation.navigate("FindAllObjects");
 		}
+		if(index==2){
+			props.navigation.navigate("Reaction");
+		}
+		if(index==3){
+			props.navigation.navigate("MemorizePicture");
+		}
+		if(index==4){
+			props.navigation.navigate("FindNumbers");
+		}
+		if(index==5){
+			props.navigation.navigate("Count");
+		}
 	};
 	return(
 		<View style={styles.container}>
-			<ImageBackground source={require("../../assets/DashBack.png")}
-				style={styles.image}
+			<ImageBackground source={
+				require("../../assets/backgroundImages/DashBack.png")
+			}
+			style={styles.image}
 			>
 				<ScrollView horizontal showsHorizontalScrollIndicator={false}>
 					{Dashboard.map((data,index)=>
@@ -56,12 +70,12 @@ const styles = StyleSheet.create({
 		justifyContent:"center",
 	},
 	img:{
-		height:200,
-		width:200,
+		height:130,
+		width:130,
 		borderRadius:500
 	},
 	text:{
-		fontSize:25,
+		fontSize:20,
 		color:"#ffffff",
 		fontWeight:"bold"
 	},
