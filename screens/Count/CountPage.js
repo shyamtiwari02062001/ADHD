@@ -238,13 +238,16 @@ const styles = StyleSheet.create({
 		bottom:10,
 		borderWidth:2,
 		borderRadius:50,
-		padding:5,
+		padding:10,
 		width:"80%",
 		backgroundColor:"white"
 	},
 	text:{
+		textShadowColor: "purple",
+		textShadowOffset: {width: -1, height: 0},
+		textShadowRadius: 1,
 		textAlign:"center",
-		fontSize:18
+		fontSize:20,
 	},
 	ok:{
 		position:"absolute",

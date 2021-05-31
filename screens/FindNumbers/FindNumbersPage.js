@@ -116,13 +116,16 @@ const styles = StyleSheet.create({
 		bottom:10,
 		borderWidth:2,
 		borderRadius:50,
-		width:"75%",
-		padding:5,
+		width:"90%",
+		padding:10,
 		backgroundColor:"white"
 	},
 	text:{
+		textShadowColor: "purple",
+		textShadowOffset: {width: -1, height: 0},
+		textShadowRadius: 1,
 		textAlign:"center",
-		fontSize:16
+		fontSize:20,
 	},
 	outterView:{
 		flexDirection:"row",

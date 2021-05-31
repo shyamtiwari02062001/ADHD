@@ -123,14 +123,14 @@ const styles = StyleSheet.create({
 		bottom:10,
 		padding:10,
 		width:"90%",
-		backgroundColor:"#2BAE66FF"
+		backgroundColor:"white"
 	},
 	bottomText:{
+		textShadowColor: "purple",
+		textShadowOffset: {width: -1, height: 1},
+		textShadowRadius: 1,
 		textAlign:"center",
-		fontSize:16,
-		fontWeight:"bold",
-		color:"white",
-		fontStyle:"italic"
+		fontSize:20,
 	},
 	gif:{
 		height:"100%",

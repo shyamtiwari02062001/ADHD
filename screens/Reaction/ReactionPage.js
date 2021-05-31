@@ -85,7 +85,7 @@ const ReactionPage = (props) => {
 						style={{height:80,width:80}}
 					/>
 				</View>
-				<View style={{marginTop:40,marginRight:25}}>
+				<View style={{marginTop:40,marginRight:25,marginBottom:"12%"}}>
 					<Image
 						source={Reaction[gameid][value]}
 						style={{height:150,width:150}}
@@ -101,8 +101,9 @@ const ReactionPage = (props) => {
 				</View>
 				<View style={styles.textView}>
 					<Text style={styles.text}>
-					Press the button when the picture in the
-					center of the screen is the same as the one in the left.
+					When the picture in
+					center is same as in
+					the left then press the button.
 					</Text>
 				</View>
 			</ImageBackground>}
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
 		alignItems:"center",
 		justifyContent:"space-evenly",
 		flexDirection:"column",
-		width:"100%"
+		width:"100%",
 	},
 	img:{
 		height:60,
@@ -134,15 +135,18 @@ const styles = StyleSheet.create({
 	textView:{
 		borderWidth:3,
 		borderRadius:50,
-		width:"75%",
-		padding:5,
+		width:"90%",
+		padding:10,
+		position:"absolute",
+		bottom: 10,
 		backgroundColor:"white"
 	},
 	text:{
+		textShadowColor: "purple",
+		textShadowOffset: {width: -1, height: 0},
+		textShadowRadius: 1,
 		textAlign:"center",
-		fontSize:16,
-		fontStyle:"italic",
-		fontWeight:"bold"
+		fontSize:20,
 	},
 	sideImage:{
 		position:"absolute",
